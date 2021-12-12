@@ -98,9 +98,7 @@ playerTurn = () => {
     let playersChoice = prompt(`We've got # of bogies in the sky what should we do R2?!  Your choices are 'fire lasers', 'fire missiles', or 'retreat'`)
 
 
-    while (playersChoice !== 'firelaser' || 'fire missiles' || 'retreat') {
-        playersChoice = prompt(`Please enter a valid command: Your choices are 'fire lasers', 'fire missiles', or 'retreat'`)
-    }
+    
    
     if(playersChoice.toLowerCase() === 'fire lasers') {
         console.log(playersChoice)
@@ -112,6 +110,11 @@ playerTurn = () => {
         console.log(playersChoice)
         console.log(xWing.retreat())
     } 
+
+    while (playersChoice.toLowerCase() !== 'fire lasers' || 'fire missiles' || 'retreat') {
+        playersChoice = prompt(`Please enter a valid command: Your choices are 'fire lasers', 'fire missiles', or 'retreat'`)
+        break;
+    }
 }
 //=======================================================================EMPIRE TURN FUNCTION
 
