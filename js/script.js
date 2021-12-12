@@ -9,7 +9,7 @@ class StarFighter {
 	}
 }
 
-//=======================================================================EMPIRE STAR FIGHTER SUBCLASS
+//==================================EMPIRE STAR FIGHTER SUBCLASS=====================================
 // this will be the empire class style ships or out "Bow"-Tie Fighters XD
 class Empire extends StarFighter {
 	constructor(pilot, hull, accuracy, blasters, emp) {
@@ -17,8 +17,10 @@ class Empire extends StarFighter {
 		this.emp = emp;
 	}
 	fireBlasters() {
-    console.log("Enemy has fired Blasters!")
+		console.log('Enemy has fired Blasters!');
+
 		xWing.hull -= this.blasters;
+
 		if (xWing.hull > 0) {
 			console.log(`Empire Pilot ${this.pilot}: Take that Rebel Scum!      
             R2-D2: *You've taken ${this.blasters} damage Commander ${xWing.pilot}, current hull strength is at ${xWing.hull}*!`);
@@ -28,10 +30,10 @@ class Empire extends StarFighter {
 		}
 	}
 	fireEmp() {
-    console.log("Enemy has fired an Electro Magnetic Pulse!")
-		
-    xWing.hull -= this.emp;
-    
+		console.log('Enemy has fired an Electro Magnetic Pulse!');
+
+		xWing.hull -= this.emp;
+
 		if (xWing.hull > 0) {
 			console.log(
 				`Empire Pilot ${this.pilot}: I'll wipe you off the face of the Galaxy, Rebel Trash!`
@@ -54,7 +56,7 @@ class Empire extends StarFighter {
 	}
 }
 
-//=======================================================================REBEL STAR FIGHTER SUBCLASS
+//====================================REBEL STAR FIGHTER SUBCLASS===================================
 
 // this will be our ever resilient Rebel Squadron, I added features to make it scarier
 class Rebel extends StarFighter {
@@ -93,17 +95,15 @@ class Rebel extends StarFighter {
 	}
 }
 
-//=======================================================================CAST OF PLAYERS AND ENEMIES
-
+//================================CAST OF PLAYERS AND ENEMIES============================================
 const bowTieFighter = new Empire('Darth Siddious', 6, 0.8, 4, 15);
 
 const xWing = new Rebel('Anakin Planeswalker', 20, 0.7, 5, 8);
 
-//=======================================================================REBELS TURN FUNCTION
+//======================================PLAYER TURN FUNCTION============================================
 
 playerTurn = () => {
-  
-    let playersChoice = '';
+	let playersChoice = '';
 
 	while (
 		playersChoice.toLowerCase() !== 'fire lasers' ||
@@ -115,34 +115,28 @@ playerTurn = () => {
        Please enter a valid command: Your choices are 'fire lasers', 'fire missiles', or 'retreat'`
 		);
 
-  
-
 		if (playersChoice.toLowerCase() === 'fire lasers') {
 			console.log('Firing Lasers!');
 			console.log(xWing.fireBlasters());
-      break;
+			break;
 		} else if (playersChoice.toLowerCase() === 'fire missiles') {
 			console.log('Firing Proton Missiles!');
 			console.log(xWing.fireProtonMissiles());
-      break;
+			break;
 		} else if (playersChoice.toLowerCase() === 'retreat') {
 			console.log('Evasive Manuevers!');
 			console.log(xWing.retreat());
-      break;
-
+			break;
 		}
-
-  }
-		
-  
+	}
 };
-//=======================================================================EMPIRE TURN FUNCTION
+//============================ENEMIES TURN FUNCTION===========================================
 
 empireTurn = () => {
-		return bowTieFighter.fireEmp();
+	return bowTieFighter.fireEmp();
 };
 
-//=========================================================== AND NOW WE SET THE TEXT/TURN/TERMINAL BASED COMBAT
+//======================= AND NOW WE SET THE TEXT/TURN/TERMINAL BASED COMBAT===========================================
 
 dogFight = () => {
 	console.log(`WARS-STAR : The Tatooine Guardian of the Skies`);
@@ -153,13 +147,11 @@ dogFight = () => {
 		`Well we appreciate your service Commander ${xWing.pilot}, I apologize for the brief introductions but, we've received reports Empire troops extorting citizens entering our skies. Look! There's one now!`
 	);
 
-  while(xWing.hull > 0 && bowTieFighter.hull > 0) {
-        	playerTurn();
-    
-		      empireTurn();
-  }
-	
-  
+	while (xWing.hull > 0 && bowTieFighter.hull > 0) {
+		playerTurn();
+
+		empireTurn();
+	}
 };
 
 dogFight();
