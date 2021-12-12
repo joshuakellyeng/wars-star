@@ -112,7 +112,7 @@ playerTurn = () => {
         console.log(playersChoice)
         console.log(xWing.retreat())
     } 
-
+}
 //=======================================================================EMPIRE TURN FUNCTION
 
 
