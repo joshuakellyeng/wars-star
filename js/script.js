@@ -18,21 +18,23 @@ class Empire extends StarFighter {
 	}
 	fireBlasters() {
 		xWing.hull -= this.blasters;
-		if (xWing.hull >= 0) {
+		if (xWing.hull > 0) {
 			console.log(`Empire Pilot ${this.pilot}: Take that Rebel Scum!      
-            R2: *You've taken ${this.blasters} damage Commander ${xWing.pilot}, current hull strength is at ${xWing.hull}*`);
+            R2: *You've taken ${this.blasters} damage Commander ${xWing.pilot}, current hull strength is at ${xWing.hull}*!`);
 		} else {
 			console.log(`Die Rebel Scum!`);
+      console.log(xWing.death)
 		}
 	}
 	fireEmp() {
 		xWing.hull -= this.emp;
 		if (xWing.hull > 0) {
 			console.log(
-				`Empire Pilot ${this.pilot}: I'll wipe you off the face of the Galaxy! Rebel Trash! R2:${xWing.hull} can't take anymore damage!`
+				`Empire Pilot ${this.pilot}: I'll wipe you off the face of the Galaxy, Rebel Trash! R2: *You've taken ${this.emp} damage Commander ${xWing.pilot}, can't take anymore damage!`
 			);
 		} else {
-			console.log(`Woohoooo! We blasted 'em!`);
+			console.log(`Empire Pilot ${bowTieFighter.pilot} : Die Rebel Scum!`);
+      console.log(xWing.death())
 		}
 	}
 	retreat() {
@@ -101,7 +103,7 @@ playerTurn = () => {
 			`We've got # of bogies in the sky what should we do R2?!
        Please enter a valid command: Your choices are 'fire lasers', 'fire missiles', or 'retreat'`
 		);
-
+      console.log(playersChoice)
 		if (playersChoice.toLowerCase() === 'fire lasers') {
 			console.log(playersChoice);
 			console.log(xWing.fireBlasters());
@@ -111,6 +113,7 @@ playerTurn = () => {
 		} else if (playersChoice.toLowerCase() === 'retreat') {
 			console.log(playersChoice);
 			console.log(xWing.retreat());
+
 		}
 		break;
 	}
@@ -119,7 +122,7 @@ playerTurn = () => {
 
 empireTurn = () => {
     while(bowTieFighter.hull > 0) {
-    console.log(bowTieFighter.fireBlasters());
+    console.log(bowTieFighter.fireEmp());
     break;
     }
 };
