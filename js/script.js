@@ -20,7 +20,7 @@ class Empire extends StarFighter {
 		xWing.hull -= this.blasters;
 		if (xWing.hull >= 0) {
 			console.log(`Empire Pilot ${this.pilot}: Take that Rebel Scum!      
-            R2: *You've taken damage Commander ${xWing.pilot}, current hull strength is at ${xWing.hull}*`);
+            R2: *You've taken ${this.blasters} damage Commander ${xWing.pilot}, current hull strength is at ${xWing.hull}*`);
 		} else {
 			console.log(`Die Rebel Scum!`);
 		}
@@ -68,15 +68,15 @@ class Rebel extends StarFighter {
 		if (bowTieFighter.hull > 0) {
 			console.log(`R2: *Enemy's hull is down to : ${bowTieFighter.hull}*`);
 		} else {
-			console.log(`Commander${this.pilot}: Woohoooo! We blasted 'em!`);
+			console.log(`Commander ${this.pilot}: Woohoooo! We blasted 'em!`);
 		}
 	}
 	retreat() {
-		console.log(`Commander${this.pilot}: I think its time we skidaddle R2!`);
+		console.log(`Commander ${this.pilot}: I think its time we skidaddle R2!`);
 	}
 	death() {
 		console.log(
-			`Commander${this.pilot}: Master Kenobi tell Padme I lo-*static noises* beep beep beeep ----------disconnected-----------`
+			`Commander ${this.pilot}: Master Kenobi tell Padme I lo-*static noises* beep beep beeep ----------disconnected-----------`
 		);
 	}
 }
@@ -90,9 +90,7 @@ const xWing = new Rebel('Anakin Planeswalker', 20, 0.7, 5, 8);
 //=======================================================================REBELS TURN FUNCTION
 
 playerTurn = () => {
-	let playersChoice = prompt(
-		`We've got # of bogies in the sky what should we do R2?!  Your choices are 'fire lasers', 'fire missiles', or 'retreat'`
-	);
+	let playersChoice = '';
 
 	while (
 		playersChoice.toLowerCase() !== 'fire lasers' ||
@@ -100,7 +98,8 @@ playerTurn = () => {
 		playersChoice.toLowerCase() !== 'retreat'
 	) {
 		playersChoice = prompt(
-			`Please enter a valid command: Your choices are 'fire lasers', 'fire missiles', or 'retreat'`
+			`We've got # of bogies in the sky what should we do R2?!
+       Please enter a valid command: Your choices are 'fire lasers', 'fire missiles', or 'retreat'`
 		);
 
 		if (playersChoice.toLowerCase() === 'fire lasers') {
@@ -119,7 +118,10 @@ playerTurn = () => {
 //=======================================================================EMPIRE TURN FUNCTION
 
 empireTurn = () => {
-	console.log(bowTieFighter.fireBlasters());
+    while(bowTieFighter.hull > 0) {
+    console.log(bowTieFighter.fireBlasters());
+    break;
+    }
 };
 
 //=========================================================== AND NOW WE SET THE TEXT/TURN/TERMINAL BASED COMBAT
@@ -133,7 +135,7 @@ dogFight = () => {
 		`Well we appreciate your service Commander ${xWing.pilot}, I apologize for the brief introductions but, we've received reports Empire troops extorting citizens entering our skies. Look! There's one now!`
 	);
 
-	while (bowTieFighter.hull > 0) {
+	while (bowTieFighter.hull > 0 && xWing.hull > 0) {
 		playerTurn();
 		empireTurn();
 	}
