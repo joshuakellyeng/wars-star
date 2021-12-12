@@ -17,24 +17,31 @@ class Empire extends StarFighter {
 		this.emp = emp;
 	}
 	fireBlasters() {
+    console.log("Enemy has fired Blasters!")
 		xWing.hull -= this.blasters;
 		if (xWing.hull > 0) {
 			console.log(`Empire Pilot ${this.pilot}: Take that Rebel Scum!      
-            R2: *You've taken ${this.blasters} damage Commander ${xWing.pilot}, current hull strength is at ${xWing.hull}*!`);
+            R2-D2: *You've taken ${this.blasters} damage Commander ${xWing.pilot}, current hull strength is at ${xWing.hull}*!`);
 		} else {
 			console.log(`Die Rebel Scum!`);
-      console.log(xWing.death)
+			console.log(xWing.death);
 		}
 	}
 	fireEmp() {
-		xWing.hull -= this.emp;
+    console.log("Enemy has fired an Electro Magnetic Pulse!")
+		
+    xWing.hull -= this.emp;
+    
 		if (xWing.hull > 0) {
 			console.log(
-				`Empire Pilot ${this.pilot}: I'll wipe you off the face of the Galaxy, Rebel Trash! R2: *You've taken ${this.emp} damage Commander ${xWing.pilot}, can't take anymore damage!`
+				`Empire Pilot ${this.pilot}: I'll wipe you off the face of the Galaxy, Rebel Trash!`
+			);
+			console.log(
+				`R2-D2: *You've taken ${this.emp} damage Commander ${xWing.pilot}, we can't afford to take anymore damage!`
 			);
 		} else {
 			console.log(`Empire Pilot ${bowTieFighter.pilot} : Die Rebel Scum!`);
-      console.log(xWing.death())
+			console.log(xWing.death());
 		}
 	}
 	retreat() {
@@ -58,23 +65,26 @@ class Rebel extends StarFighter {
 	fireBlasters() {
 		bowTieFighter.hull -= this.blasters;
 		if (bowTieFighter.hull >= 0) {
-			console.log(`R2: *Enemy's hull is down to : ${bowTieFighter.hull}*`);
+			console.log(`R2-D2: *Enemy's hull is down to : ${bowTieFighter.hull}*`);
 		} else {
 			console.log(bowTieFighter.death());
-			console.log(`KABOOM! Woohoooo! Good Work R2!`);
+			console.log(`KABOOM!`);
+			console.log(`Commander ${this.pilot}: Woohoooo! Good Work R2-D2!`);
 		}
 	}
 	//this is a fire proton missiles method
 	fireProtonMissiles() {
 		bowTieFighter.hull -= this.protonMissiles;
 		if (bowTieFighter.hull > 0) {
-			console.log(`R2: *Enemy's hull is down to : ${bowTieFighter.hull}*`);
+			console.log(`R2-D2: *Enemy's hull is down to : ${bowTieFighter.hull}*`);
 		} else {
 			console.log(`Commander ${this.pilot}: Woohoooo! We blasted 'em!`);
 		}
 	}
 	retreat() {
-		console.log(`Commander ${this.pilot}: I think its time we skidaddle R2!`);
+		console.log(
+			`Commander ${this.pilot}: I think its time we skidaddle R2-D2!`
+		);
 	}
 	death() {
 		console.log(
@@ -92,7 +102,8 @@ const xWing = new Rebel('Anakin Planeswalker', 20, 0.7, 5, 8);
 //=======================================================================REBELS TURN FUNCTION
 
 playerTurn = () => {
-	let playersChoice = '';
+  
+    let playersChoice = '';
 
 	while (
 		playersChoice.toLowerCase() !== 'fire lasers' ||
@@ -100,37 +111,41 @@ playerTurn = () => {
 		playersChoice.toLowerCase() !== 'retreat'
 	) {
 		playersChoice = prompt(
-			`We've got # of bogies in the sky what should we do R2?!
+			`We've got # of bogies in the sky what should we do R2-D2?!
        Please enter a valid command: Your choices are 'fire lasers', 'fire missiles', or 'retreat'`
 		);
-      console.log(playersChoice)
+
+  
+
 		if (playersChoice.toLowerCase() === 'fire lasers') {
-			console.log(playersChoice);
+			console.log('Firing Lasers!');
 			console.log(xWing.fireBlasters());
+      break;
 		} else if (playersChoice.toLowerCase() === 'fire missiles') {
-			console.log(playersChoice);
+			console.log('Firing Proton Missiles!');
 			console.log(xWing.fireProtonMissiles());
+      break;
 		} else if (playersChoice.toLowerCase() === 'retreat') {
-			console.log(playersChoice);
+			console.log('Evasive Manuevers!');
 			console.log(xWing.retreat());
+      break;
 
 		}
-		break;
-	}
+
+  }
+		
+  
 };
 //=======================================================================EMPIRE TURN FUNCTION
 
 empireTurn = () => {
-    while(bowTieFighter.hull > 0) {
-    console.log(bowTieFighter.fireEmp());
-    break;
-    }
+		return bowTieFighter.fireEmp();
 };
 
 //=========================================================== AND NOW WE SET THE TEXT/TURN/TERMINAL BASED COMBAT
 
 dogFight = () => {
-	console.log(`WARS-STAR : The Tatooine Guadian of the Skies`);
+	console.log(`WARS-STAR : The Tatooine Guardian of the Skies`);
 	xWing.pilot = prompt(
 		'Thank you for volunteering to be a guardian of Tatooine young Commander! What may we call you?'
 	);
@@ -138,10 +153,13 @@ dogFight = () => {
 		`Well we appreciate your service Commander ${xWing.pilot}, I apologize for the brief introductions but, we've received reports Empire troops extorting citizens entering our skies. Look! There's one now!`
 	);
 
-	while (bowTieFighter.hull > 0 && xWing.hull > 0) {
-		playerTurn();
-		empireTurn();
-	}
+  while(xWing.hull > 0 && bowTieFighter.hull > 0) {
+        	playerTurn();
+    
+		      empireTurn();
+  }
+	
+  
 };
 
 dogFight();
