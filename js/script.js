@@ -244,14 +244,25 @@ const dogFight = () => {
   
     // }
 
-  while(xWing.hull > 0 && bowTieFighter.hull > 0) {
-    playerTurn()
-    enemiesTurn()
-  }
+//   while(xWing.hull > 0 && bowTieFighter.hull > 0) {
+//     playerTurn()
+//     enemiesTurn()
+//   }
+while(xWing.hull > 0 && bowTieFighter.hull > 0) {
+	playerTurn()
+	 if(bowTieFighter.hull > 0) {
+	   enemiesTurn()
+	 } else if (bowTieFighter.hull <= 0)
+	   console.log("YOU WIN!")
+   else if (xWing.hull <= 0) {
+   console.log("YOU LOSE!")
+	 } else if(playersChoice === 'retreat'){
+   break
+ } else {
+   console.log("REFRESH WINDOW TO RESTART")
+ }
+}
 
-
-
-    
 
 }
 
