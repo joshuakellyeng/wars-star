@@ -36,23 +36,22 @@ class Empire extends StarFighter {
 	}
 	fireBlasters() {
 		console.log('Enemy has fired Blasters!');
-		//this checks if our aim is accurate rather than hard coding a value
-		//this calculates the damage step
-		if (isAccurate() === true) {
-			xWing.hull -= this.blasters;
-			// is logged if we missed
-			if (xWing.hull > 0) {
-				console.log(`Empire Pilot ${this.pilot}: Take that Rebel Scum!      
+    //this checks if our aim is accurate rather than hard coding a value
+    //this calculates the damage step
+    if(isAccurate() === true) {
+      		xWing.hull -= this.blasters;
+    // is logged if we missed
+      if (xWing.hull > 0) {
+        console.log(`Empire Pilot ${this.pilot}: Take that Rebel Scum!      
               R2-D2: *You've taken ${this.blasters} damage Commander ${xWing.pilot}, current hull strength is at ${xWing.hull}*!`);
-			} else {
-				console.log(`Die Rebel Scum!`);
-				console.log(xWing.death);
-			}
-		} else {
-			console.log(
-				`Hah! They missed! R2-D2: *Current hull strength is : ${xWing.hull}*`
-			);
-		}
+      } else {
+        console.log(`Die Rebel Scum!`);
+        console.log(xWing.death);
+      }
+    } else {
+      console.log(`Hah! They missed! R2-D2: *Current hull strength is : ${xWing.hull}*`)
+    }
+		
 	}
 	fireEmp() {
 		console.log('Enemy has fired an Electro Magnetic Pulse!');
@@ -89,15 +88,15 @@ class Rebel extends StarFighter {
 		super(pilot, hull, accuracy, blasters);
 	} //pew pew pew
 	fireBlasters() {
-		//this checks if our aim is accurate rather than hard coding a value
-		//this calculates the damage step
-		if (isAccurate() === true) {
-			bowTieFighter.hull -= this.blasters;
-			// is logged if we missed
-			console.log(`R2-D2: *Enemy's hull strength is : ${bowTieFighter.hull}*`);
-		} else {
-			console.log(`Commander ${this.pilot}: Oh no we missed!`);
-		}
+    //this checks if our aim is accurate rather than hard coding a value
+    //this calculates the damage step
+    if(isAccurate() === true) {
+      	bowTieFighter.hull -= this.blasters;
+    // is logged if we missed
+      console.log(`R2-D2: *Enemy's hull strength is : ${bowTieFighter.hull}*`)
+    } else {
+      console.log(`Commander ${this.pilot}: Oh no we missed!`)
+    }
 		if (bowTieFighter.hull >= 0) {
 			console.log(`R2-D2: *Enemy's hull strength is : ${bowTieFighter.hull}*`);
 		} else {
@@ -112,7 +111,7 @@ class Rebel extends StarFighter {
 		if (bowTieFighter.hull > 0) {
 			console.log(`R2-D2: *Enemy's hull is down to : ${bowTieFighter.hull}*`);
 		} else {
-			console.log(bowTieFighter.death());
+      console.log(bowTieFighter.death());
 			console.log(`KABOOM!`);
 			console.log(`Commander ${this.pilot}: Woohoooo! We blasted 'em!`);
 		}
@@ -136,14 +135,15 @@ const xWing = new Rebel('Anakin Planeswalker', 20, 0.7, 5, 8);
 // const squadron = [];
 //this loop allows me to mass produce enemy ships to my desired quantity all with varying stats
 // for (let i = 1; i <= 6; i++) {
-bowTieFighter = new Empire(`Storm Trooper`);
-// squadron.push(bowTieFighter);
+	bowTieFighter = new Empire(`Storm Trooper`);
+	// squadron.push(bowTieFighter);
 // }
 
 // //============================ENEMIES TURN FUNCTION===========================================
 //this code randomly selects the enemies choice and executes a series of functions in the even
 
 const enemiesTurn = () => {
+  
 	let choice = Math.floor(Math.random() * 3);
 
 	switch (choice) {
@@ -204,52 +204,59 @@ const dogFight = () => {
 	console.log(
 		`Well we appreciate your service Commander ${xWing.pilot}, I apologize for the brief introductions but, we've received reports Empire troops extorting citizens entering our skies. Look! There's one now!`
 	);
-	//first while loop attempt
-	// while(bowTieFighter.hull > 0 ) {
+        //first while loop attempt
+    // while(bowTieFighter.hull > 0 ) {
 
-	//      playerTurn()
+    //      playerTurn()
 
-	//   if(enemiesTurn() === 2) {
-	//       console.log('Rebels Win!')
-	//       break;
+    //   if(enemiesTurn() === 2) {
+    //       console.log('Rebels Win!')
+    //       break;
 
-	//  } else if (playerTurn() === 'retreat') {
-	//       console.log('GAME OVER!')
-	//       break;
-	//   } else {
+    //  } else if (playerTurn() === 'retreat') {
+    //       console.log('GAME OVER!')
+    //       break;
+    //   } else {
 
-	//     enemiesTurn()
+    //     enemiesTurn()
 
-	//    }
+    //    }
 
-	// }
+  
+    // }
 
-	//second attempt
-	// while(bowTieFighter.hull > 0 ) {
 
-	//      playerTurn()
+    //second attempt
+    // while(bowTieFighter.hull > 0 ) {
 
-	//   if(bowTieFighter.hull > 0) {
-	//     enemiesTurn()
-	//    } else if (enemiesTurn() === 2) {
-	//       console.log('Rebels Win!')
-	//       break;
-	//   } else {
-	//     console.log('Rebels Win!')
-	//     break;
-	//    }
+    //      playerTurn()
 
-	// }
+    //   if(bowTieFighter.hull > 0) {
+    //     enemiesTurn()
+    //    } else if (enemiesTurn() === 2) {
+    //       console.log('Rebels Win!')
+    //       break;
+    //   } else {
+    //     console.log('Rebels Win!')
+    //     break;
+    //    }
 
-	pewpew = () => {
-		playerTurn();
-		if (bowTieFighter.hull > 0) {
-			enemiesTurn();
-		}
-		pewpew();
-	};
+  
+    // }
 
-	pewpew();
-};
+  while(xWing.hull > 0 && bowTieFighter.hull > 0) {
+    playerTurn()
+    enemiesTurn()
+  }
 
-dogFight();
+
+
+    
+
+}
+
+dogFight()
+
+
+
+
