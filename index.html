@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/styles.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div class="main-container">
+			<div class="hide" id="game">
+				<div class="squadron">
+					<h1>Enemies Left:<span id="enemy-count"></span></h1>
+				</div>
+
+				<div class="enemy-container flex">
+					<img src="img/enemy.gif" alt="alien" />
+					<div class="enemy-hud">
+						<h3>Hull: <span id="e-hull"></span></h3>
+						<h3 >
+							FirePower:<span id="e-firepower"></span>
+						</h3>
+						<h3>
+							Accuracy:<span id="e-accuracy"></span>
+						</h3>
+					</div>
+				</div>
+
+				<div class="player-container flex">
+					<img src="img/space_hero.gif" alt="hero" />
+					<div class="player-hud">
+						<h3>Hull:<span id="player-hull"></span></h3>
+						<h3>FirePower:<span id="player-firepower"></span></h3>
+						<h3>Accuracy:<span id="player-accuracy"></span></h3>
+					</div>
+				</div>
+
+				<h2 id="whosTurn"></h2>
+
+				<div class="player-options">
+					<button onclick="">Attack</button>
+					<button onclick="game.retreat()">Retreat</button>
+				</div>
+			</div>
+            <div class="title-card">
+                <h1>Welcome To Space Battle</h1>
+            <h1>Will You Be The One </h1> 
+            <h1>To Save The Planet From Sure Destruction?</h1>
+            </div>
+
+			<button onclick="game.start()" id="start-btn">START</button>
+		</div>
+
+		<script src="js/script.js"></script>
+	</body>
 </html>
