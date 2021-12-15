@@ -14,6 +14,9 @@ const playerHull = document.querySelector('#player-hull');
 const playerFirepower = document.querySelector('#player-firepower');
 const playerAccuracy = document.querySelector('#player-accuracy');
 
+//turnIndicator
+const turnIndicator = document.querySelector('#whose-turn')
+
 //class========================================
 class Spaceship {
 	constructor(hull, firepower, accuracy) {
@@ -49,7 +52,7 @@ const game = {
 		startButton.classList.remove('hide')
 		startButton.innerText = 'RESTART'
 	},
-	
+
 };
 
 console.log(playerShip)
