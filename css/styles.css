@@ -26,8 +26,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    height: 80vh;
+    justify-content: space-between;
+    height: ;
 }
 
 
@@ -61,6 +61,7 @@
     margin: 0.4em 0;
     border: 2px solid white;
     background-color: #000;
+    cursor: pointer;
 }
 
 #start-btn{
@@ -69,13 +70,15 @@
     margin: 0.4em 0;
     border: 2px solid white;
     background-color: #000;
+    cursor: pointer;
+
 }
 
 .title-card {
     text-align: center;
 }
 
-.player-options button:hover{
+#start-btn:hover, .player-options button:hover{
     border: 5px solid white;
 }
 
