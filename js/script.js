@@ -8,6 +8,8 @@ const enemiesLeft = document.querySelector('#enemy-count');
 const enemyHull = document.querySelector('#e-hull');
 const enemyFirepower = document.querySelector('#e-firepower');
 const enemyAccuracy = document.querySelector('#e-accuracy');
+//images
+const alienGif = document.querySelector('#alien-gif')
 
 //player data
 const playerHull = document.querySelector('#player-hull');
@@ -66,18 +68,6 @@ const alienShip = new AlienShip(
 	);
 
 
-const battle = () => {
-	playerShip.attack()
-	if(alienShip.hull > 0) {
-		alienShip.attack()
-		// turnIndicator.innerHTML = 'If you wish to continue click "Attack", If you wish to flee click "Retreat"!'
-	} else {
-		turnIndicator.innerHTML = 'YOU WIN!'
-		enemyTurn.innerHTML = ''
-	}
-
-}
-
 const game = {
 	start: () => {
 		startButton.classList.add('hide');
@@ -108,5 +98,20 @@ const game = {
 };
 
 
+const battle = () => {
+	playerShip.attack()
+	if(alienShip.hull > 0) {
+		alienShip.attack()
+		// turnIndicator.innerHTML = 'If you wish to continue click "Attack", If you wish to flee click "Retreat"!'
+	} else {
+		turnIndicator.innerHTML = 'YOU WIN!'
+		enemyTurn.innerHTML = ''
+		enemiesLeft.innerHTML -= 1
+		alienGif.src = "/img/boom.gif"
+	}
+	if(enemiesLeft.innerHTML === 0) {
+		gameWindow.classList.add('hide')
+	}
 
+}
 
