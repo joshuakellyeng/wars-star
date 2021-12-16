@@ -73,7 +73,7 @@ const battle = () => {
 		// turnIndicator.innerHTML = 'If you wish to continue click "Attack", If you wish to flee click "Retreat"!'
 	} else {
 		turnIndicator.innerHTML = 'YOU WIN!'
-		// location.reload()
+		enemyTurn.innerHTML = ''
 	}
 
 }
